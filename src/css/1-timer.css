@@ -1,0 +1,18 @@
+@import 'flatpickr/dist/flatpickr.min.css';
+
+body {
+  padding: 36px 156px;
+}
+
+input {
+  width: 272px;
+}
+
+.timer {
+}
+.field {
+}
+.value {
+}
+.label {
+}
