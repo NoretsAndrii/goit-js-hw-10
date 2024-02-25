@@ -1,10 +1,15 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 const btn = document.querySelector('button');
 const input = document.querySelector('input');
 const daysTimer = document.querySelector('[data-days]');
-const secondTimer = document.querySelector('[data-seconds]');
+const hoursTimer = document.querySelector('[data-hours]');
+const minutesTimer = document.querySelector('[data-minutes]');
+const secondsTimer = document.querySelector('[data-seconds]');
 
 let userSelectedDate;
 
@@ -17,10 +22,22 @@ const options = {
     const data = new Date(selectedDates[0]);
     if (data.getTime() <= Date.now()) {
       btn.setAttribute('disabled', 'true');
-      return alert('Please choose a date in the future');
+      btn.classList.remove('active-btn');
+
+      return iziToast.error({
+        backgroundColor: 'red',
+        close: false,
+        icon: 'icon-close-outline',
+        iconColor: 'white',
+        messageColor: 'white',
+        message: 'Please choose a date in the future',
+        position: 'topRight',
+        progressBar: false,
+      });
     }
     userSelectedDate = data.getTime();
     btn.removeAttribute('disabled');
+    btn.classList.add('active-btn');
   },
 };
 
@@ -41,29 +58,30 @@ function convertMs(ms) {
   const minutes = Math.floor(((ms % day) % hour) / minute);
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-  console.log({ days, hours, minutes, seconds });
   return { days, hours, minutes, seconds };
 }
 
 btn.addEventListener('click', handleClick);
 function handleClick(event) {
   btn.setAttribute('disabled', 'true');
+  btn.classList.remove('active-btn');
   input.setAttribute('disabled', 'true');
+  input.classList.add('disabled-input');
 
   let remainderMs = userSelectedDate - Date.now();
 
-  let timerId = setInterval(
+  let timer = setInterval(
     () => {
-      // debugger;
       if (remainderMs <= 0) {
-        clearInterval(timerId);
+        clearInterval(timer);
         btn.removeAttribute('disabled');
+        btn.classList.add('active-btn');
         input.removeAttribute('disabled');
+        input.classList.remove('disabled-input');
       } else {
         const obj = convertMs(remainderMs);
         makeTimerContent(obj);
         remainderMs -= 1000;
-        console.log(remainderMs);
       }
     },
     1000,
@@ -76,5 +94,8 @@ function addZero(value) {
 }
 
 function makeTimerContent({ days, hours, minutes, seconds }) {
-  secondTimer.textContent = addZero(seconds);
+  daysTimer.textContent = addZero(days);
+  hoursTimer.textContent = addZero(hours);
+  minutesTimer.textContent = addZero(minutes);
+  secondsTimer.textContent = addZero(seconds);
 }
