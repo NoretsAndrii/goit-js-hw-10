@@ -24,9 +24,11 @@ const options = {
       btn.setAttribute('disabled', 'true');
       btn.classList.remove('active-btn');
 
-      return iziToast.error({
+      return iziToast.show({
         backgroundColor: 'red',
         close: false,
+        icon: 'icon-close-outline3',
+        iconColor: 'white',
         messageColor: 'white',
         message: 'Please choose a date in the future',
         position: 'topRight',
