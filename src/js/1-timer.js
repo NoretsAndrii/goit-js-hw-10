@@ -62,6 +62,7 @@ function convertMs(ms) {
 }
 
 btn.addEventListener('click', handleClick);
+
 function handleClick(event) {
   btn.setAttribute('disabled', 'true');
   btn.classList.remove('active-btn');
