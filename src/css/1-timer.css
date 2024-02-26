@@ -1,8 +1,10 @@
+@import 'izitoast/dist/css/iziToast.min.css';
+
 body {
   padding: 36px 156px;
 }
 
-input {
+#datetime-picker {
   width: 280px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
