@@ -69,25 +69,20 @@ function handleClick(event) {
   input.setAttribute('disabled', 'true');
   input.classList.add('disabled-input');
 
-  let remainderMs = userSelectedDate - Date.now();
+  let timer = setInterval(() => {
+    let remainderMs = userSelectedDate - Date.now();
 
-  let timer = setInterval(
-    () => {
-      if (remainderMs <= 0) {
-        clearInterval(timer);
-        btn.removeAttribute('disabled');
-        btn.classList.add('active-btn');
-        input.removeAttribute('disabled');
-        input.classList.remove('disabled-input');
-      } else {
-        const obj = convertMs(remainderMs);
-        makeTimerContent(obj);
-        remainderMs -= 1000;
-      }
-    },
-    1000,
-    remainderMs
-  );
+    if (remainderMs <= 0) {
+      clearInterval(timer);
+      btn.removeAttribute('disabled');
+      btn.classList.add('active-btn');
+      input.removeAttribute('disabled');
+      input.classList.remove('disabled-input');
+    } else {
+      const obj = convertMs(remainderMs);
+      makeTimerContent(obj);
+    }
+  }, 1000);
 }
 
 function addZero(value) {
