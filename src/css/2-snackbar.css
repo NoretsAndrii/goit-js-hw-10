@@ -1,0 +1,59 @@
+.form {
+  width: 360px;
+}
+.input {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+  border: 1px solid rgb(128, 128, 128);
+  border-radius: 4px;
+  padding: 8px 16px;
+  outline: 0px solid transparent;
+  transition: border liner 250ms;
+}
+
+.input:hover,
+fieldset:hover,
+fieldset:focus-within {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.input:focus-within {
+  border: 1px solid rgb(78, 117, 255);
+}
+
+fieldset {
+  width: 100%;
+  border: 1px solid rgb(128, 128, 128);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  transition: border liner 250ms;
+}
+
+label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.submit-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 100%;
+  border: 0px solid transparent;
+  color: #fff;
+  background-color: #4e75ff;
+  transition: background-color linear 250ms;
+}
+
+.submit-btn:hover {
+  background-color: #6c8cff;
+}
